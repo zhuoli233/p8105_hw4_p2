@@ -1,0 +1,24 @@
+---
+title: "p8105_hw4_p2_zl2637"
+author: "Zhuo Li"
+date: 10/23/2017
+output: html_document
+---
+
+```{r prepare, collapse = TRUE, results= 'hide'}
+library(tidyverse)
+library(janitor)
+library(lubridate)
+```
+
+##Problem 2
+```{r problem_2_1, collapse=TRUE}
+pols_month_data = read_csv("./fivethirtyeight_datasets/pols-month.csv")%>%
+  mutate(date = floor_date(mon, "month"))%>%
+  select(-mon)
+GDP_data = read_csv("./fivethirtyeight_datasets/GDP.csv")%>%
+  rename(date = DATE)
+GDP = left_join(pols_month_data, GDP_data)%>%
+  clean_names()
+```
+ 
