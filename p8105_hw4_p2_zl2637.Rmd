@@ -35,3 +35,7 @@ GDP %>%
   dyRangeSelector(dateWindow = c("1947-01-01", "2015-06-01"))  
 ```
  
+From Figure 2:
+
+- The gdp is going down in recent years;
+- Performance of presidents from the democrats and the republicans on economics are not far different.
