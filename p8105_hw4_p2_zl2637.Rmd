@@ -21,4 +21,17 @@ GDP_data = read_csv("./fivethirtyeight_datasets/GDP.csv")%>%
 GDP = left_join(pols_month_data, GDP_data)%>%
   clean_names()
 ```
+```{r prob2_figure}
+if (!require("dygraphs")) install.packages('dygraphs')
+
+GDP %>% 
+  filter(value != ".") %>% 
+  mutate(value = as.numeric(value)) %>% 
+  mutate(gdp_dem = value*prez_dem, gdp_gop = value*prez_gop) %>% 
+  select(date, gdp_dem, gdp_gop) %>% 
+  remove_rownames() %>%
+  column_to_rownames(var="date") %>% 
+  dygraph(main = "Figure 2. GDP value over time", xlab = "Date", ylab = "GDP") %>% 
+  dyRangeSelector(dateWindow = c("1947-01-01", "2015-06-01"))  
+```
  
